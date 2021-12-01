@@ -4,11 +4,15 @@ import random
 
 serial = "ABCD1234EFGH"
 
+def getSerial():
+    return serial
+
 def editSerial(text):
     try:
         if len(text) != 12:
             raise ValueError("length must be 12")
         serial = text
+        print(serial)
     except TypeError as e:
         print(e)
 

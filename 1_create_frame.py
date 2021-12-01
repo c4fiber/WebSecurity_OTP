@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 from tkinter.font import Font
+from typing import Sized
 import generateOTP
 
 root = Tk()
@@ -17,10 +18,12 @@ fontStyle = Font(family="consolas", size=15)
 otpLabel = Label(root, padx=50, pady=60,text=otpText, font=fontStyle)
 otpLabel.pack()
 
+
 def renewOTP():
     # OTP 새로고침 함수
     global counter
     counter = 31
+    generateOTP.editSerial(e.get())
     otpLabel.config(text=generateOTP.getOTP())
     #print("수정필요, OTP 새로고침")
 
@@ -41,6 +44,10 @@ def count():
         counter -= 1
     label1.config(text=str(counter)+"초간 유효합니다.")
     label1.after(1000, count)
+
+e = Entry(root, width=15)
+e.insert(0,generateOTP.getSerial())
+e.pack()
 
 count()
 
